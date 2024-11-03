@@ -16,12 +16,11 @@ const App = (props) => {
     const newNote = {
       id: notes.length + 1,
       content: newNoteContent,
-      important: false,
+      important: Math.random() < 0.5, // true o false ALEATORIO
     };
 
     setNotes([...notes, newNote]);
-    // Limpiar el input después de agregar la nota
-    setNewNoteContent("");
+    setNewNoteContent(""); // Limpiar el input después de agregar la nota
   };
 
   return (
