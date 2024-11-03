@@ -6,7 +6,6 @@ const App = (props) => {
   const [notes, setNotes] = useState(props.notes);
   const [newNoteContent, setNewNoteContent] = useState("");
 
-  // Manejar el cambio en el input
   const handleNoteChange = (event) => {
     setNewNoteContent(event.target.value);
   };
@@ -15,13 +14,14 @@ const App = (props) => {
   const addNote = (event) => {
     event.preventDefault();
     const newNote = {
-      id: notes.length + 1, // Generar un id simple
+      id: notes.length + 1,
       content: newNoteContent,
       important: false,
     };
 
     setNotes([...notes, newNote]);
-    setNewNoteContent(""); // Limpiar el input después de agregar la nota
+    // Limpiar el input después de agregar la nota
+    setNewNoteContent("");
   };
 
   return (
@@ -30,9 +30,9 @@ const App = (props) => {
         <input
           value={newNoteContent}
           onChange={handleNoteChange}
-          placeholder="Write a new note"
+          placeholder="Escribe una nota"
         />
-        <button type="submit">save</button>
+        <button type="submit">Guardar</button>
       </form>
       <h1>Notes</h1>
       <ul>
