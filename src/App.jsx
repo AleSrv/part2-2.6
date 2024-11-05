@@ -26,7 +26,7 @@ const App = (props) => {
 
   const notesToShow = showAll
     ? notes
-    : notes.filter(note => note.important === true)
+    : notes.filter(note => note.important)
 
   // const toggleImportance = (id) => {
   //   const newNotes = notes.map((note) =>
@@ -39,7 +39,7 @@ const App = (props) => {
       <button
         onClick={() => { setShowAll(!showAll) }}
       >
-        {showAll ? "Mostrar importantes" : "Mostrar todas las notas"}
+        Mostrar {showAll ? " solo importantes" : " todas las notas"}
       </button>
       <ul>
         {notesToShow.map(note =>
