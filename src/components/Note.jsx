@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 const Note = ({ note }) => {
     return (
         <li>
-            <p>{note.content}</p>
+            {note.content}
+            {note.important ? <span> ✅</span> : <span> ❌</span>}
         </li>
     );
 };

@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 const App = (props) => {
   const [notes, setNotes] = useState(props.notes);
   const [newNoteContent, setNewNoteContent] = useState("");
+  const [showAll, setShowAll] = useState(true)
 
   const handleNoteChange = (event) => {
     setNewNoteContent(event.target.value);
@@ -23,8 +24,28 @@ const App = (props) => {
     setNewNoteContent(""); // Limpiar el input después de agregar la nota
   };
 
+  const notesToShow = showAll
+    ? notes
+    : notes.filter(note => note.important === true)
+
+  // const toggleImportance = (id) => {
+  //   const newNotes = notes.map((note) =>
+  //     note.id === id ? { ...note, important: !note.important } : note
+  //   );
+
   return (
     <div>
+      <h2>Notes Important</h2>
+      <button
+        onClick={() => { setShowAll(!showAll) }}
+      >
+        {showAll ? "Mostrar importantes" : "Mostrar todas las notas"}
+      </button>
+      <ul>
+        {notesToShow.map(note =>
+          <Note key={note.id} note={note} />
+        )}
+      </ul>
       <form onSubmit={addNote}>
         <input
           value={newNoteContent}
@@ -39,8 +60,6 @@ const App = (props) => {
           <Note key={note.id} note={note} />
         ))}
       </ul>
-
-
     </div>
   );
 };
